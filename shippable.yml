@@ -3,8 +3,11 @@ language: node_js
 
 # Version number
 node_js:
-  - 0.10.33
+  - "5.0"
 
-after_success:
-  - if [ "$BRANCH" == "master" ]; then git remote add dokku dokku@45.55.161.207:demo; fi
-  - if [ "$BRANCH" == "master" ]; then git push dokku master; fi
+build:
+  ci:
+    - npm install
+  on_success:
+    - if [ "$BRANCH" == "master" ]; then git remote add dokku dokku@45.55.161.207:demo; fi
+    - if [ "$BRANCH" == "master" ]; then git push dokku master; fi
